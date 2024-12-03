@@ -7,7 +7,7 @@ use App\Models\Etudiant;
 class EtudiantController extends Controller
 {
     public function liste_etudiant(){
-        $etudiants = Etudiant::all();
+        $etudiants = Etudiant::orderBy('id')->paginate(4);
         return view('etudiant.liste', compact('etudiants'));
     }
 
@@ -51,7 +51,14 @@ $etudiant->Prenom = $request->Prenom;
 $etudiant->Classe = $request->Classe;
 $etudiant->update();
 
-return redirect('/etudiant')->with('status', 'l etudiant est modifié avec succes');
+return redirect('/etudiant')->with('status', 'l etudiant est modifié avec succées');
+
+}
+
+public function delete_etudiant($id){
+    $etudiant = Etudiant::find($id);
+    $etudiant->delete();
+return redirect('/etudiant')->with('status', ' l etudiant est supprimé avec succeés');
 
 }
 
