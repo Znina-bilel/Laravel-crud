@@ -13,7 +13,24 @@
     <div class="col s12">
     <h1>Ajouter un etudiant</h1>
 <hr>
-<form>
+
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
+@endif
+
+<ul>
+    @foreach ($errors->all() as $error)
+    <li class="alert alert-danger">
+{{$error}}
+    </li>
+    @endforeach
+</ul>
+
+
+<form action="/ajouter/traitement" method="POST">
+    @csrf
   <div class="form-group">
     <label for="Nom" class="form-label" >Nom</label>
     <input type="text" class="form-control" id="Nom" name="Nom">
