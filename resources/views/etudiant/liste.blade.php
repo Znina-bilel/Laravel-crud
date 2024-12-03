@@ -16,6 +16,13 @@
     <hr>
     <a href="/ajouter" class="btn btn-primary">Ajouter un etudiant </a>
 <hr>
+
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
+@endif
+
     <table class="table">
 <thead>
     <tr>
@@ -24,39 +31,25 @@
         <th>Prenom</th>
         <th>Classe</th>
         <th>Actions</th>
-
     </tr>
 </thead>
 <tbody>
+    @foreach($etudiants as $etudiant)
     <tr>
-        <td>1</td>
-        <td>Znina</td>
-        <td>Bilel</td>
-        <td>MDW</td>
-        <td><a href="#" class="btn btn-info">Update</a>
+       <td>{{ $etudiant->id }}</td>
+       <td>{{ $etudiant->Nom }}</td>
+       <td>{{ $etudiant->Prenom }}</td>
+       <td>{{ $etudiant->Classe }}</td>
+<td>
+        <td><a href="/update-etudiant/{{ $etudiant->id}}" class="btn btn-info">Update</a>
         <a href="#" class="btn btn-danger">Delete</a></td>
-    </tr>
-
-
-    <tr>
-        <td>2</td>
-        <td>Ahmed</td>
-        <td>Ahmed</td>
-        <td>MDW</td>
-        <td><a href="#" class="btn btn-info">Update</a>
-        <a href="#" class="btn btn-danger">Delete</a></td>
+        </td>
     </tr>
 
 
 
-    <tr>
-        <td>3</td>
-        <td>salim</td>
-        <td>salim</td>
-        <td>MDW</td>
-        <td><a href="#" class="btn btn-info">Update</a>
-        <a href="#" class="btn btn-danger">Delete</a></td>
-    </tr>
+@endforeach
+
 </tbody>
     </table>
     </div>
